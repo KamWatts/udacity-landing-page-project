@@ -15,7 +15,8 @@ const createNavLinks = (listItem) => {
 
 // Checks if each section is within the viewport parameters
 const getViewPortMeasurements = (section) => {
-  const forBoundingClient = section.getforBoundingClientClientRect();
+  // using .getBoundingClientRect() as reference to detecting the section
+  const forBoundingClient = section.getBoundingClientRect();
   return (
     forBoundingClient.top >= -200 &&
     forBoundingClient.bottom <=
@@ -37,9 +38,10 @@ const buildNav = () => {
 // Invokes function to activate it 
 buildNav();
 
-// Uses the forEach loop that targets the 'section' class and applies the same viewport principles to each one including new sections that join the class
+// Uses the forEach loop that targets the 'section' class and applies the same viewport principles to each one including new sections that join the class. the getViewPortMeasurements function holds getBoundingClientByRect information. Refer to the helper function up top.
 const setActiveSection = () => {
   allSections.forEach((section) => {
+    // ternary operator that adds or removes the active class based on section detection as the page scrolls
     getViewPortMeasurements(section)
       ? section.classList.add('your-active-class')
       : section.classList.remove('your-active-class');
@@ -57,10 +59,13 @@ const scrollToSection = (event) => {
   const targetSection = document.querySelector(targetId);
   targetSection.scrollIntoView({ behavior: 'smooth' });
 };
+
 // Applies this scrollToSection function to all nav links
 const navLinks = document.querySelectorAll('.menu__link');
 navLinks.forEach((link) => {
   link.addEventListener('click', scrollToSection);
 });
+
+setActiveSection;
 
 // Sidenote: Notice that some functions are invoked and some are not. The invoked functions like buildNav() will run at all times. The other functions activate based on the activity of the user on the webpage. Other functions are what I like to call "developer friendly" with automating the designs of new sections that get added to the webpage.
