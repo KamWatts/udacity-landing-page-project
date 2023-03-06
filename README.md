@@ -20,18 +20,24 @@ This flowchart I created kept me on track with knowing the order of the DOM elem
 
 ## Lighthouse Report
 
-[Accesibility Report](./assets/lighthouse_report.png)
+Accesibility Report: <img src="./assets/lighthouse_report.png"/>
 
 =================================
 
 ## Resources and Articles I used for reference
 
 JS Challenger: <https://www.jschallenger.com/javascript-dom-exercises/>
+
 Codewars: <https://www.codewars.com/dashboard>
+
 Join Method: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join>
+
 Filter Method: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter>
+
 From Method: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from>
+
 Ternary Operator: <https://www.programiz.com/javascript/ternary-operator>
+
 DOM Manipulation Article: <https://generalassemb.ly/blog/dom-manipulation-changing-website-response-user-actions/>
 
 An article I spent a lot of time reading for refactoring code: <https://www.testim.io/blog/javascript-refactoring-5-plays-to-improve-code-quality/>
