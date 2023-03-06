@@ -88,6 +88,12 @@ section {
   transition: ease 0.3s all;
 }
 
+.navbar__menu .menu__link:active {
+  background: darkgoldenrod;
+  color: #252525;
+  transition: ease-out 0.3s all;
+}
+
 #navbar__list {
   display: flex;
   flex-direction: row;
