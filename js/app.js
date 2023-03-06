@@ -1,55 +1,66 @@
-/**
- * 
- * Manipulating the DOM exercise.
- * Exercise programmatically builds navigation,
- * scrolls to anchors from navigation,
- * and highlights section in viewport upon scrolling.
- * 
- * Dependencies: None
- * 
- * JS Version: ES2015/ES6
- * 
- * JS Standard: ESlint
- * 
-*/
+// Navigation global variable
+const nav = document.getElementById('navbar__list');
+
+// Sections global variable
+const allSections = document.querySelectorAll('section');
 
 /**
- * Comments should be present at the beginning of each procedure and class.
- * Great to have comments before crucial code sections within the procedure.
-*/
+ * Helper Functions
+ */
+
+// This function will create the nav__links
+const createNavLinks = (listItem) => {
+  return `<a class="menu__link" href="#${listItem.id}">${listItem.dataset.nav}</a>`;
+};
+
+// Checks if each section is within the viewport parameters
+const getViewPortMeasurements = (section) => {
+  const forBoundingClient = section.getforBoundingClientClientRect();
+  return (
+    forBoundingClient.top >= -200 &&
+    forBoundingClient.bottom <=
+      (window.innerHeight || document.documentElement.clientHeight) + 200
+  );
+};
 
 /**
- * Define Global Variables
- * 
-*/
+ * Main Functions
+ */
 
+// Maps over all sections and returns the entire nav bar
+const buildNav = () => {
+  // navLinks uses my allSections variable maps over all of the nav links to bring their functionality together
+  const navLinks = Array.from(allSections).map(createNavLinks);
+  // Every link appends to the nav bar "nav" is also another global variable
+  nav.innerHTML = navLinks.join('');
+};
+// Invokes function to activate it 
+buildNav();
 
-/**
- * End Global Variables
- * Start Helper Functions
- /**
- * End Helper Functions
- * Begin Main Functions
- * 
-*/
+// Uses the forEach loop that targets the 'section' class and applies the same viewport principles to each one including new sections that join the class
+const setActiveSection = () => {
+  allSections.forEach((section) => {
+    getViewPortMeasurements(section)
+      ? section.classList.add('your-active-class')
+      : section.classList.remove('your-active-class');
+  });
+};
 
-// build the nav
+// Listens for a scroll and uses using setActiveSection as a callback function
+window.addEventListener('scroll', setActiveSection);
 
+// When a link in the navbar is clicked, an event is "heard" on the href and triggers a smooth scroll function. Prevent default is used so the functionality won't be disrupted
+const scrollToSection = (event) => {
+  event.preventDefault();
+  // tells event what to listen for
+  const targetId = event.target.getAttribute('href');
+  const targetSection = document.querySelector(targetId);
+  targetSection.scrollIntoView({ behavior: 'smooth' });
+};
+// Applies this scrollToSection function to all nav links
+const navLinks = document.querySelectorAll('.menu__link');
+navLinks.forEach((link) => {
+  link.addEventListener('click', scrollToSection);
+});
 
-// Add class 'active' to section when near top of viewport
-
-
-// Scroll to anchor ID using scrollTO event
-
-
-/**
- * End Main Functions
- * Begin Events
- * 
-*/
-
-// Build menu 
-
-// Scroll to section on link click
-
-// Set sections as active
+// Sidenote: Notice that some functions are invoked and some are not. The invoked functions like buildNav() will run at all times. The other functions activate based on the activity of the user on the webpage. Other functions are what I like to call "developer friendly" with automating the designs of new sections that get added to the webpage.
