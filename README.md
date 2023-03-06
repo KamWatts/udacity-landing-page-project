@@ -1,1 +1,1 @@
-# udacity-landing-page-project
+# Landing Page Project for Udacity Nanodegree Program
